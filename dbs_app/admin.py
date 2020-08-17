@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-from .models import ChildData, TeacherData, Section, Groups
+from .models import ChildData, TeacherData, Section, Group
 
 
 # Register your models here.
@@ -71,7 +71,7 @@ class BigForm(forms.ModelForm):
         w.choices = choices
 
 
-@admin.register(Groups)
+@admin.register(Group)
 class CustomerAdmin(admin.ModelAdmin):
     list_per_page = 100
     filter_horizontal = ('teacher', 'children')
