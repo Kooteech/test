@@ -87,7 +87,7 @@ class Section(models.Model):
     data = models.TextField()
 
 
-class Groups(models.Model):
+class Group(models.Model):
     def __str__(self):
         return '{} ({})'.format(self.group_name, self.group_section)
     group_name = models.CharField(max_length=50,
