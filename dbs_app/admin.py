@@ -70,7 +70,7 @@ class BigForm(forms.ModelForm):
             choices.append((choice.id, choice.first_name))
         w.choices = choices
 
-    
+
 @admin.register(Groups)
 class CustomerAdmin(admin.ModelAdmin):
     list_per_page = 100
