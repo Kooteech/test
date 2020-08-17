@@ -25,7 +25,7 @@ SECRET_KEY = 'a&(xy=varkfgo!fyp#i0p-u5b!h_lwaj-0)doi^ltb%v#iv#11'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['test-server-django-01.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -78,11 +78,14 @@ WSGI_APPLICATION = 'DTDM_BASE.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd107d8gi0rt175',                      
+        'USER': 'zoqhlbwqqpinku',
+        'PASSWORD': 'f616215e68ecb1fb02e436518146a29599aa86d230fa67b73fb6a4c740910670',
+        'HOST': 'ec2-176-34-114-78.eu-west-1.compute.amazonaws.com',
+        'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -123,6 +126,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 # Heroku: Update database configuration from $DATABASE_URL.
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
