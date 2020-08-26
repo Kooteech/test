@@ -21,6 +21,8 @@ class ChildData(models.Model):
     phone_number = models.CharField(max_length=15, null=True, verbose_name='Номер телефона')
     sex = models.CharField(max_length=10,
                            choices=(('boy', 'М'), ('girl', 'Ж')), default='Sex is not set', verbose_name='Пол')
+    teach_status = models.CharField(max_length=20,
+                                    choices=(('free', 'бюджет'), ('pay', 'платно')), default='---', verbose_name='Тип обучения')
     udo_status = models.CharField(max_length=20, blank=True, choices=(
         ('not_avail', 'Не посещает'),
         ('Yes', 'Посещающий'),
