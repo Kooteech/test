@@ -19,6 +19,7 @@ class ChildData(models.Model):
     date_birth = models.DateField(verbose_name='Дата рождения')
     certificate_num = models.CharField(max_length=100, verbose_name='Номер сертификата')
     phone_number = models.CharField(max_length=15, null=True, verbose_name='Номер телефона')
+    adress = models.CharField(max_length = 100, verbose_name = 'Адрес')
     sex = models.CharField(max_length=10,
                            choices=(('boy', 'М'), ('girl', 'Ж')), default='Sex is not set', verbose_name='Пол')
     teach_status = models.CharField(max_length=20,
