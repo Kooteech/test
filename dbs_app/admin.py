@@ -26,8 +26,8 @@ class ChildDataAdmin(admin.ModelAdmin):
             'fields': ['family_status', 'diagnose', 'special_status']
         }),
     )
-    list_display = ('first_name', 'middle_name', 'last_name', 'date_birth', 'certificate_num')
-    search_fields = ('first_name', 'last_name', 'certificate_num')
+    list_display = ('first_name', 'middle_name', 'last_name', 'date_birth', 'adress', 'certificate_num')
+    search_fields = ('first_name', 'middle_name', 'adress', 'certificate_num')
     list_display_links = ['first_name', 'middle_name', 'last_name', 'certificate_num']
 
 
