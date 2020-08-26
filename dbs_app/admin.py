@@ -8,7 +8,7 @@ from .models import ChildData, TeacherData, Section, Group
 class ChildDataAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Данные ученика', {
-            'fields': ['first_name', 'middle_name', 'last_name', 'date_birth', 'sex', 'phone_number', 'adress', 'certificate_num', 'teach_status']
+            'fields': ['first_name', 'middle_name', 'last_name', 'date_birth','parent', 'sex', 'phone_number', 'adress', 'certificate_num', 'teach_status']
         }),
         ('Информация об УДО', {
             'fields': ['udo_status', 'udo_name']
