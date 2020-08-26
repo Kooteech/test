@@ -17,6 +17,7 @@ class ChildData(models.Model):
     middle_name = models.CharField(max_length=100, verbose_name='Имя')
     last_name = models.CharField(max_length=100, verbose_name='Отчество')
     date_birth = models.DateField(verbose_name='Дата рождения')
+    parent = models.CharField(max_length=100, verbose_name = 'ФИО родителя')
     certificate_num = models.CharField(max_length=100, verbose_name='Номер сертификата')
     phone_number = models.CharField(max_length=15, null=True, verbose_name='Номер телефона')
     adress = models.CharField(max_length = 100, verbose_name = 'Адрес')
