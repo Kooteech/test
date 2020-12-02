@@ -17,10 +17,14 @@ class ChildData(models.Model):
     middle_name = models.CharField(max_length=100, verbose_name='Имя')
     last_name = models.CharField(max_length=100, verbose_name='Отчество')
     date_birth = models.DateField(verbose_name='Дата рождения')
+    parent = models.CharField(max_length=100, verbose_name = 'ФИО родителя')
     certificate_num = models.CharField(max_length=100, verbose_name='Номер сертификата')
     phone_number = models.CharField(max_length=15, null=True, verbose_name='Номер телефона')
+    adress = models.CharField(max_length = 100, verbose_name = 'Адрес')
     sex = models.CharField(max_length=10,
                            choices=(('boy', 'М'), ('girl', 'Ж')), default='Sex is not set', verbose_name='Пол')
+    teach_status = models.CharField(max_length=20,
+                                    choices=(('free', 'бюджет'), ('pay', 'платно')), default='---', verbose_name='Тип обучения')
     udo_status = models.CharField(max_length=20, blank=True, choices=(
         ('not_avail', 'Не посещает'),
         ('Yes', 'Посещающий'),
@@ -87,7 +91,7 @@ class Section(models.Model):
     data = models.TextField()
 
 
-class Groups(models.Model):
+class Group(models.Model):
     def __str__(self):
         return '{} ({})'.format(self.group_name, self.group_section)
     group_name = models.CharField(max_length=50,

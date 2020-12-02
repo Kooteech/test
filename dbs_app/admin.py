@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-from .models import ChildData, TeacherData, Section, Groups
+from .models import ChildData, TeacherData, Section, Group
 
 
 # Register your models here.
@@ -8,7 +8,7 @@ from .models import ChildData, TeacherData, Section, Groups
 class ChildDataAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Данные ученика', {
-            'fields': ['first_name', 'middle_name', 'last_name', 'date_birth', 'sex', 'phone_number', 'certificate_num']
+            'fields': ['first_name', 'middle_name', 'last_name', 'date_birth','parent', 'sex', 'phone_number', 'adress', 'certificate_num', 'teach_status']
         }),
         ('Информация об УДО', {
             'fields': ['udo_status', 'udo_name']
@@ -26,8 +26,8 @@ class ChildDataAdmin(admin.ModelAdmin):
             'fields': ['family_status', 'diagnose', 'special_status']
         }),
     )
-    list_display = ('first_name', 'middle_name', 'last_name', 'date_birth', 'certificate_num')
-    search_fields = ('first_name', 'last_name', 'certificate_num')
+    list_display = ('first_name', 'middle_name', 'last_name', 'date_birth', 'adress', 'certificate_num')
+    search_fields = ('first_name', 'middle_name', 'adress', 'certificate_num')
     list_display_links = ['first_name', 'middle_name', 'last_name', 'certificate_num']
 
 
@@ -71,7 +71,7 @@ class BigForm(forms.ModelForm):
         w.choices = choices
 
 
-@admin.register(Groups)
+@admin.register(Group)
 class CustomerAdmin(admin.ModelAdmin):
     list_per_page = 100
     filter_horizontal = ('teacher', 'children')

@@ -25,7 +25,7 @@ SECRET_KEY = 'a&(xy=varkfgo!fyp#i0p-u5b!h_lwaj-0)doi^ltb%v#iv#11'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['test-server-django-01.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['tsg01.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'DTDM_BASE.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd107d8gi0rt175',                      
-        'USER': 'zoqhlbwqqpinku',
-        'PASSWORD': 'f616215e68ecb1fb02e436518146a29599aa86d230fa67b73fb6a4c740910670',
-        'HOST': 'ec2-176-34-114-78.eu-west-1.compute.amazonaws.com',
+        'NAME': 'd7ggj99vo09h6f',                      
+        'USER': 'vxxvifsfygrqbo',
+        'PASSWORD': '7e29925b6b9ab0925bc645525f6463a5129e3f05088cae758d3c88e775ff9c78',
+        'HOST': 'ec2-3-248-4-172.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
     }
 }
