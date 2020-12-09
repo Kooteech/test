@@ -18,10 +18,12 @@ def get_childdata(request):
         if form.is_valid():
             age_from = form.cleaned_data.get("age_from")
             age_to = form.cleaned_data.get("age_to")
-            print(age_from, age_to)
-            table = ChildData.objects.all()
-            context = {'table': table}
-            return render(request, 'db_viewer/table.html', context)
+            if (age_from == 0) & (age_to == 0):
+                table = ChildData.objects.all()
+                context = {'table': table}
+                for data in table:
+                    print(data)
+                return render(request, 'db_viewer/table.html', context)
     else:
         form = AgeForm()
     return render(request, 'db_viewer/search.html', {'form': form})
