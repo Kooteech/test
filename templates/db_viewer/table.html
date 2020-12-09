@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang = "en">
+    <head>
+        <meta charset = "urf-8" name = "viewport" content = "width=device-width, initial-scale=1"/>
+        {% load static %}
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/bootstrap.css' %}"/>
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/jquery.dataTables.css' %}"/>
+    </head>
+<body>
+    <nav class = "navbar navbar-default" >
+        <div class = "container-fluid">
+            <a class = "navbar-brand ">Дети</a>
+        </div>
+    </nav>
+    <div class = "col-md-3"></div>
+    <div class = "col-lg-pull-6" style="margin: 20px">
+        {% block body %}
+            <table id = "child_table" class = "table table-bordered">
+                <thead class = "alert-success">
+                    <tr>
+                        <th>Фамилия</th>
+                        <th>Имя</th>
+                        <th>Дата рождения</th>
+                        <th>Пол</th>
+                        <th>Сертификат</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data in table %}
+                    <tr>
+                        <td>{{ data.first_name }}</td>
+                        <td>{{ data.middle_name }}</td>
+                        <td>{{ data.date_birth }}</td>
+                        <td>{{ data.sex }}</td>
+                        <td>{{ data.certificate_num }}</td>
+                    </tr>
+                   {% endfor %}
+                </tbody>
+            </table>
+        {% endblock %}
+    </div>
+</body>
+{%  block js_stuff %}
+    <script src="{% static 'js/jquery-3.2.1.js' %}"></script>
+    <script src="{% static 'js/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'js/dataTables.bootstrap.min.js' %}"></script>
+    <script type = "text/javascript">
+            $(document).ready(function() {
+                $('#child_table thead th').each( function () {
+                    var title = $(this).text();
+                    $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+                } );
+            var table = $('#child_table').DataTable({
+                initComplete: function () {
+                    // Apply the search
+                    this.api().columns().every( function () {
+                        var that = this;
+
+                        $( 'input', this.header() ).on( 'keyup change clear', function () {
+                            if ( that.search() !== this.value ) {
+                                that
+                                    .search( this.value )
+                                    .draw();
+                            }
+                        } );
+                    } );
+                }
+            });
+            $('#child_table tbody')
+                .on( 'mouseenter', 'td', function () {
+                    var colIdx = table.cell(this).index().column;
+
+                    $( table.cells().nodes() ).removeClass( 'highlight' );
+                    $( table.column( colIdx ).nodes() ).addClass( 'highlight' );
+                } );
+            } );
+        </script>
+{% endblock %}
+</html>
+
+

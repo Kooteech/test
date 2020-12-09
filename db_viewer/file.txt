@@ -1,0 +1,19 @@
+let ageDifMs = Date.now() - data[2].getTime();
+                let ageDate = new Date(ageDifMs);
+                $('td', row).eq(2).value(Math.abs(ageDate.getUTCFullYear() - 1970))
+
+createdRow: function (row, data, index) {
+                if (data[3]=="boy"){
+                    $('td', row).eq(3).addClass('text-success');
+                }
+            }
+
+            $(document).ready(function(){
+                $('#child_table').DataTable({
+                    "createdRow": function (row, data, index) {
+                        if (data[3]==="boy") {
+                            $('td', row).eq(3).addClass('text-success');
+                        }
+                    }
+                });
+            });

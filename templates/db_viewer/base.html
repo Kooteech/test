@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset = "urf-8" name = "viewport" content = "width=device-width, initial-scale=1"/>
+        {% load static %}
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/bootstrap.css' %}"/>
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/jquery.dataTables.css' %}"/>
+    </head>
+<body>
+    <nav class = "navbar navbar-default" >
+        <div class = "container-fluid">
+            <a class = "navbar-brand ">Таблица</a>
+        </div>
+    </nav>
+    <div class = "col-md-3"></div>
+    <div class = "col-md-6 well">
+        <h3 class = "text-primary">Таблица</h3>
+        <hr style = "border-top:1px dotted #000;"/>
+        {% block body %}
+        {% endblock %}
+    </div>
+</body>
+{%  block js_stuff %}
+    <script src="{% static 'js/jquery-3.2.1.js' %}"></script>
+    <script src="{% static 'js/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'js/dataTables.bootstrap.min.js' %}"></script>
+    <script type = "text/javascript">
+            $(document).ready(function(){
+                $('#table').DataTable({
+                    "createdRow": function (row, data, index) {
+                        if (data[3]=="boy"){
+                            $('td', row).eq(3).addClass('text-success');
+                        }
+                    }
+                });
+            });
+        </script>
+{% endblock %}
+</html>

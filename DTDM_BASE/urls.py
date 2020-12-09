@@ -20,7 +20,7 @@ from django.urls import path
 from dbs_app import views
 
 urlpatterns = [
-    #path('dbs_app/', include('dbs_app.urls')),
     path('admin/', admin.site.urls),
-    path('', views.redirect_to, name="admin_redirect")
+    path('', views.redirect_to, name="admin_redirect"),
+    path('viewer/', include('db_viewer.urls')),
 ]

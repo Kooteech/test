@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dbs_app.apps.DbsAppConfig',
+    'db_viewer.apps.DbViewerConfig',
+    'django_tables2',
+    'django_filters',
+    'bootstrap3',
 ]
 
 MIDDLEWARE = [
@@ -118,7 +122,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/

@@ -17,10 +17,10 @@ class ChildData(models.Model):
     middle_name = models.CharField(max_length=100, verbose_name='Имя')
     last_name = models.CharField(max_length=100, verbose_name='Отчество')
     date_birth = models.DateField(verbose_name='Дата рождения')
-    parent = models.CharField(max_length=100, verbose_name = 'ФИО родителя')
+    parent = models.CharField(max_length=100, verbose_name = 'ФИО родителя', default='')
     certificate_num = models.CharField(max_length=100, verbose_name='Номер сертификата')
     phone_number = models.CharField(max_length=15, null=True, verbose_name='Номер телефона')
-    adress = models.CharField(max_length = 100, verbose_name = 'Адрес')
+    adress = models.CharField(max_length = 100, verbose_name = 'Адрес', default='')
     sex = models.CharField(max_length=10,
                            choices=(('boy', 'М'), ('girl', 'Ж')), default='Sex is not set', verbose_name='Пол')
     teach_status = models.CharField(max_length=20,
