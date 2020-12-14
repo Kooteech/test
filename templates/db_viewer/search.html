@@ -1,6 +1,14 @@
-<h3>Укажите возраст</h3>
-<form method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit">
-</form>
+{% load bootstrap3 %}
+<head>
+        <meta charset = "urf-8" name = "viewport" content = "width=device-width, initial-scale=1"/>
+        {% load static %}
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/bootstrap.css' %}"/>
+</head>
+<body style="margin: 20px">
+    <h3>Укажите возраст</h3>
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" value="Submit">
+    </form>
+</body>
