@@ -1,17 +1,28 @@
 from django.contrib import admin
 from django import forms
+from inline_actions.admin import InlineActionsModelAdminMixin
+from django.shortcuts import redirect
 from .models import ChildData, TeacherData, Section, Group
 
 
 # Register your models here.
 @admin.register(ChildData)
-class ChildDataAdmin(admin.ModelAdmin):
+class ChildDataAdmin(InlineActionsModelAdminMixin, admin.ModelAdmin):
+    inline_actions = ['view']
+
+    def view(self, request, obj, parent_obj=None):
+        url = '/viewer/childdata/moreinfo/?id={}'.format(obj.pk)
+        return redirect(url)
+
+    view.short_description = "Карточка"
+
     fieldsets = (
         ('Данные ученика', {
-            'fields': ['first_name', 'middle_name', 'last_name', 'date_birth','parent', 'sex', 'phone_number', 'adress', 'certificate_num', 'teach_status']
+            'fields': ['personal_number', 'first_name', 'middle_name', 'last_name', 'date_birth', 'parent', 'sex', 'phone_number',
+                       'adress', 'certificate_num', 'teach_status']
         }),
         ('Информация об УДО', {
-            'fields': ['udo_status', 'udo_name']
+            'fields': ['udo_status', 'udo_name', 'udo_group']
         }),
         ('Информация о МООУ', {
             'fields': ['municipal_status', 'municipal_name', 'class_number']
@@ -25,8 +36,14 @@ class ChildDataAdmin(admin.ModelAdmin):
         ('Социальная характеристика', {
             'fields': ['family_status', 'diagnose', 'special_status']
         }),
+        ('Документы', {
+            'fields': ['doc_zayavl_checkbox', 'doc_dogovor_checkbox', 'doc_opd_checkbox', 'doc_soprovod_checkbox',
+                       'doc_svid_checkbox']
+        }),
     )
-    list_display = ('first_name', 'middle_name', 'last_name', 'date_birth', 'adress', 'certificate_num')
+    list_display = (
+    'first_name', 'middle_name', 'last_name', 'date_birth', 'adress', 'certificate_num', 'doc_zayavl_checkbox',
+    'doc_dogovor_checkbox', 'doc_opd_checkbox', 'doc_soprovod_checkbox', 'doc_svid_checkbox')
     search_fields = ('first_name', 'middle_name', 'adress', 'certificate_num')
     list_display_links = ['first_name', 'middle_name', 'last_name', 'certificate_num']
 

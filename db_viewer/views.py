@@ -22,11 +22,11 @@ def get_childdata(request):
             if (age_from == 0) & (age_to == 0):
                 for obj in table:
                     if obj.sex == "boy":
-                        obj.sex = "Мальчик"
+                        obj.sex = "М"
                         my_obj_list.append(obj)
                     else:
                         my_obj_list.append(obj)
-                        obj.sex = "Девочка"
+                        obj.sex = "Ж"
                 none_qs = ChildData.objects.none()
                 qs = list(chain(none_qs, my_obj_list))
                 context = {'table': qs}
@@ -34,11 +34,11 @@ def get_childdata(request):
                 for obj in table:
                     if (calculateAge(obj.date_birth) >= age_from) and (calculateAge(obj.date_birth) <= age_to):
                         if obj.sex == "boy":
-                            obj.sex = "Мальчик"
+                            obj.sex = "М"
                             my_obj_list.append(obj)
                         else:
                             my_obj_list.append(obj)
-                            obj.sex = "Девочка"
+                            obj.sex = "Ж"
                 none_qs = ChildData.objects.none()
                 qs = list(chain(none_qs, my_obj_list))
                 context = {'table': qs}
@@ -59,7 +59,7 @@ def get_more_info(request):
             data = ChildData.objects.get(id=child_id)
             groups = Group.objects.filter(children=child_id)
             if data.sex == "boy":
-                data.sex = "Мальчик"
+                data.sex = "М"
             else:
-                data.sex = "Девочка"
+                data.sex = "Ж"
             return render(request, 'db_viewer/moreinfo.html', {'data': data, 'groups': groups})

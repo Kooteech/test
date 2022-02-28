@@ -24,16 +24,5 @@
     <script src="{% static 'js/jquery-3.2.1.js' %}"></script>
     <script src="{% static 'js/jquery.dataTables.js' %}"></script>
     <script src="{% static 'js/dataTables.bootstrap.min.js' %}"></script>
-    <script type = "text/javascript">
-            $(document).ready(function(){
-                $('#table').DataTable({
-                    "createdRow": function (row, data, index) {
-                        if (data[3]=="boy"){
-                            $('td', row).eq(3).addClass('text-success');
-                        }
-                    }
-                });
-            });
-        </script>
 {% endblock %}
 </html>

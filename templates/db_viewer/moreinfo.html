@@ -10,17 +10,19 @@
 <body>
     <nav class = "navbar navbar-default" >
         <div class = "container-fluid">
-            <a class = "navbar-brand ">Информация</a>
+            <a class = "navbar-brand ">Информация: Л/Н {{ data.personal_number }}</a>
         </div>
     </nav>
     <!---<div class = "col-sm-8"></div>--->
     <div class = "col-xs-pull-8" style="margin: 20px;">
         {% block body %}
+            <label>Информация об обучающемся</label>
             <table id = "data" class = "table table-bordered">
                 <thead class = "alert-success">
                     <tr>
                         <th>Фамилия</th>
                         <th>Имя</th>
+                        <th>Отчество</th>
                         <th>Дата рождения</th>
                         <th>Пол</th>
                         <th>Сертификат</th>
@@ -32,6 +34,7 @@
                     <tr>
                         <td>{{ data.first_name }}</td>
                         <td>{{ data.middle_name }}</td>
+                        <td>{{ data.last_name }}</td>
                         <td>{{ data.date_birth }}</td>
                         <td>{{ data.sex }}</td>
                         <td>{{ data.certificate_num }}</td>
@@ -43,6 +46,7 @@
         {% endblock %}
     </div>
     <div class = "col-xs-pull-8" style="margin: 20px;">
+    <label>Зачислен(а) в группы</label>
     <table id = "child_table" class = "table table-bordered">
     <thead class = "alert-success">
                     <tr>

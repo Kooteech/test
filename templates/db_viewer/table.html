@@ -14,53 +14,50 @@
         </div>
     </nav>
     <!---<div class = "col-sm-8"></div>--->
-    <div class = "col-xs-pull-8" style="margin: 20px;">
         {% block body %}
+            <div class = "col-xs-pull-6" style="margin: 20px;">
             <table id = "child_table" class = "table table-bordered">
                 <thead class = "alert-success">
                     <tr>
-                        <th>Фамилия</th>
-                        <th>Имя</th>
-                        <th>Дата рождения</th>
-                        <th>Пол</th>
-                        <th>Сертификат</th>
-                        <th>Родитель</th>
-                        <th>Адрес проживания</th>
+                        <th style="width: 20%">Фамилия</th>
+                        <th style="width: 20%">Имя</th>
+                        <th style="width: 20%">Отчество</th>
+                        <th style="width: 10%">Дата рождения</th>
+                        <th style="width: 10%">Пол</th>
+                        <th style="width: 20%">Сертификат</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for data in table %}
                     <tr>
-                        <td><a class="btn-link" href="/viewer/childdata/moreinfo/?id={{ data.id }}">{{ data.first_name }}</a></td>
+                        <td class="btn-link" href="/viewer/childdata/moreinfo/?id={{ data.id }}">{{ data.first_name }}</td>
                         <td>{{ data.middle_name }}</td>
+                        <td> {{ data.last_name }}</td>
                         <td>{{ data.date_birth }}</td>
                         <td>{{ data.sex }}</td>
                         <td>{{ data.certificate_num }}</td>
-                        <td>{{ data.parent }}</td>
-                        <td>{{ data.adress }}</td>
                     </tr>
                    {% endfor %}
                 </tbody>
             </table>
+            </div>
         {% endblock %}
-    </div>
 </body>
 {%  block js_stuff %}
     <script src="{% static 'js/jquery-3.2.1.js' %}"></script>
     <script src="{% static 'js/jquery.dataTables.js' %}"></script>
     <script src="{% static 'js/dataTables.bootstrap.min.js' %}"></script>
     <script type = "text/javascript">
-            $(document).ready(function() {
+        $(document).ready(function() {
                 $('#child_table thead th').each( function () {
                     var title = $(this).text();
-                    $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+                    $(this).html( '<input type="text" style="width: auto" placeholder="Поиск '+title+'" />' );
                 } );
             var table = $('#child_table').DataTable({
                 initComplete: function () {
                     // Apply the search
                     this.api().columns().every( function () {
                         var that = this;
-
                         $( 'input', this.header() ).on( 'keyup change clear', function () {
                             if ( that.search() !== this.value ) {
                                 that
@@ -71,15 +68,8 @@
                     } );
                 }
             });
-            $('#child_table tbody')
-                .on( 'mouseenter', 'td', function () {
-                    var colIdx = table.cell(this).index().column;
-
-                    $( table.cells().nodes() ).removeClass( 'highlight' );
-                    $( table.column( colIdx ).nodes() ).addClass( 'highlight' );
-                } );
-            } );
-        </script>
+        } );
+    </script>
 {% endblock %}
 </html>
 
